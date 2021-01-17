@@ -5,18 +5,6 @@
   "remainder": 310,
   "steps": [
     {
-      "dividend": 6,
-      "integralDividend": 0,
-      "quotient": 0,
-      "remainder": 6
-    },
-    {
-      "dividend": 63,
-      "integralDividend": 0,
-      "quotient": 0,
-      "remainder": 63
-    },
-    {
       "dividend": 630,
       "integralDividend": 610,
       "quotient": 1,

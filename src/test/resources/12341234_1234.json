@@ -5,24 +5,6 @@
   "remainder": 0,
   "steps": [
     {
-      "dividend": 1,
-      "integralDividend": 0,
-      "quotient": 0,
-      "remainder": 1
-    },
-    {
-      "dividend": 12,
-      "integralDividend": 0,
-      "quotient": 0,
-      "remainder": 12
-    },
-    {
-      "dividend": 123,
-      "integralDividend": 0,
-      "quotient": 0,
-      "remainder": 123
-    },
-    {
       "dividend": 1234,
       "integralDividend": 1234,
       "quotient": 1,

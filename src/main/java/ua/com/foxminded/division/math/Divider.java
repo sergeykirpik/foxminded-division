@@ -3,12 +3,16 @@ package ua.com.foxminded.division.math;
 import ua.com.foxminded.division.model.DivisionResult;
 import ua.com.foxminded.division.model.DivisionStep;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class Divider {
     public DivisionResult divide(int dividend, int divisor) {
 
         String dividendStr = String.valueOf(dividend);
         int digitsInDividend = dividendStr.length();
-        DivisionStep[] steps = new DivisionStep[digitsInDividend];
+        List<DivisionStep> steps = new ArrayList<>();
         int remainder = 0;
         int quotient = 0;
 
@@ -20,7 +24,9 @@ public class Divider {
             remainder = step.getRemainder();
             quotient = quotient * 10 + step.getQuotient();
 
-            steps[i] = step;
+            if (!steps.isEmpty() || step.getQuotient() != 0) {
+                steps.add(step);
+            }
         }
 
         return new DivisionResult(dividend, divisor, quotient, remainder, steps);

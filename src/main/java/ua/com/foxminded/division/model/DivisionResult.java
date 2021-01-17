@@ -1,21 +1,21 @@
 package ua.com.foxminded.division.model;
 
-import java.util.Arrays;
-import java.util.Objects;
+import java.util.*;
 
 public class DivisionResult {
     private final int dividend;
     private final int divisor;
     private final int quotient;
     private final int remainder;
-    private final DivisionStep[] steps;
+    private final List<DivisionStep> steps = new ArrayList<>();
 
-    public DivisionResult(int dividend, int divisor, int quotient, int remainder, DivisionStep[] steps) {
+    public DivisionResult(int dividend, int divisor, int quotient, int remainder, Iterable<DivisionStep> steps) {
         this.dividend = dividend;
         this.divisor = divisor;
         this.quotient = quotient;
         this.remainder = remainder;
-        this.steps = steps;
+
+        steps.forEach(this.steps::add);
     }
 
     public int getDividend() {
@@ -35,7 +35,7 @@ public class DivisionResult {
     }
 
     public DivisionStep[] getSteps() {
-        return Arrays.copyOf(steps, steps.length);
+        return steps.toArray(new DivisionStep[0]);
     }
 
     @Override
@@ -43,14 +43,16 @@ public class DivisionResult {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         DivisionResult that = (DivisionResult) o;
-        return dividend == that.dividend && divisor == that.divisor && quotient == that.quotient && remainder == that.remainder && Arrays.equals(steps, that.steps);
+        return dividend == that.dividend &&
+               divisor == that.divisor &&
+               quotient == that.quotient &&
+               remainder == that.remainder &&
+               steps.equals(that.steps);
     }
 
     @Override
     public int hashCode() {
-        int result = Objects.hash(dividend, divisor, quotient, remainder);
-        result = 31 * result + Arrays.hashCode(steps);
-        return result;
+        return Objects.hash(dividend, divisor, quotient, remainder, steps);
     }
 
     @Override
@@ -60,7 +62,7 @@ public class DivisionResult {
                 ", divisor=" + divisor +
                 ", quotient=" + quotient +
                 ", remainder=" + remainder +
-                ", steps=" + Arrays.toString(steps) +
+                ", steps=" + steps +
                 '}';
     }
 }

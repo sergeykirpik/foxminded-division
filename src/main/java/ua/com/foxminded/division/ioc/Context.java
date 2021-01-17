@@ -1,8 +1,8 @@
 package ua.com.foxminded.division.ioc;
 
 import ua.com.foxminded.division.math.Divider;
+import ua.com.foxminded.division.text.ClassicFormatter;
 import ua.com.foxminded.division.text.Formatter;
-import ua.com.foxminded.division.text.JsonFormatter;
 
 public class Context {
 
@@ -14,7 +14,7 @@ public class Context {
     public static Context newInstance(String[] args) {
         Context context = new Context();
         context.divider = new Divider();
-        context.formatter = new JsonFormatter();
+        context.formatter = new ClassicFormatter();
 
         return context;
     }
