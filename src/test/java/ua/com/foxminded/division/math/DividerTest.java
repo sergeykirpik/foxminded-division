@@ -1,14 +1,22 @@
 package ua.com.foxminded.division.math;
 
+import com.google.gson.Gson;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ua.com.foxminded.division.model.DivisionResult;
-import ua.com.foxminded.division.model.DivisionStep;
+
+import java.io.IOException;
+import java.io.Reader;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DividerTest {
 
+    private static final Path TEST_RESOURCES_PATH = Path.of("src/test/resources");
+
+    private static final Gson gson = new Gson();
     private Divider underTest;
 
     @BeforeEach
@@ -16,67 +24,35 @@ public class DividerTest {
         underTest = new Divider();
     }
 
+    private DivisionResult getResultFromFile(int dividend, int divisor) {
+        String fileName = String.format("%d_%d.json", dividend, divisor);
+        Path filePath = TEST_RESOURCES_PATH.resolve(fileName);
+        try (Reader reader = Files.newBufferedReader(filePath)) {
+            return gson.fromJson(reader, DivisionResult.class);
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void doTest(int dividend, int divisor) {
+        DivisionResult expected = getResultFromFile(dividend, divisor);
+        DivisionResult actual = underTest.divide(dividend, divisor);
+        assertEquals(expected, actual);
+    }
+
     @Test
     void test1() {
-        int dividend = 78945;
-        int divisor = 4;
-        int quotient = 19736;
-        int remainder = 1;
-        DivisionStep[] steps = new DivisionStep[] {
-                new DivisionStep(7, 4, 1, 3),
-                new DivisionStep(38, 36, 9, 2),
-                new DivisionStep(29, 28, 7, 1),
-                new DivisionStep(14, 12, 3, 2),
-                new DivisionStep(25, 24, 6, 1)};
-
-        DivisionResult expected = new DivisionResult(dividend, divisor, quotient, remainder, steps);
-
-        DivisionResult actual = underTest.divide(dividend, divisor);
-
-        assertEquals(expected, actual);
+        doTest(78945, 4);
     }
 
     @Test
     void test2() {
-        int dividend = 630440;
-        int divisor = 610;
-        int quotient = 1033;
-        int remainder = 310;
-        DivisionStep[] steps = new DivisionStep[] {
-                new DivisionStep(6, 0, 0, 6),
-                new DivisionStep(63, 0, 0, 63),
-                new DivisionStep(630, 610, 1, 20),
-                new DivisionStep(204, 0, 0, 204),
-                new DivisionStep(2044, 1830, 3, 214),
-                new DivisionStep(2140, 1830, 3, 310)};
-
-        DivisionResult expected = new DivisionResult(dividend, divisor, quotient, remainder, steps);
-
-        DivisionResult actual = underTest.divide(dividend, divisor);
-
-        assertEquals(expected, actual);
+        doTest(630440, 610);
     }
 
     @Test
     void test3() {
-        int dividend = 12341234;
-        int divisor = 1234;
-        int quotient = 10001;
-        int remainder = 0;
-        DivisionStep[] steps = new DivisionStep[] {
-                new DivisionStep(1, 0, 0, 1),
-                new DivisionStep(12, 0, 0, 12),
-                new DivisionStep(123, 0, 0, 123),
-                new DivisionStep(1234, 1234, 1, 0),
-                new DivisionStep(1, 0, 0, 1),
-                new DivisionStep(12, 0, 0, 12),
-                new DivisionStep(123, 0, 0, 123),
-                new DivisionStep(1234, 1234, 1, 0)};
-
-        DivisionResult expected = new DivisionResult(dividend, divisor, quotient, remainder, steps);
-
-        DivisionResult actual = underTest.divide(dividend, divisor);
-
-        assertEquals(expected, actual);
+        doTest(12341234, 1234);
     }
 }
