@@ -20,11 +20,11 @@ public class ClassicFormatterTest extends BaseTest {
     @ParameterizedTest
     @MethodSource("provideArgsForTests")
     void format_shouldReturnCorrectResult(int dividend, int divisor) {
-        String formattedFileName = String.format("%d_%d.classic.txt", dividend, divisor);
+        String formattedFileName = String.format("%d_%d.txt", dividend, divisor);
         String resultFileName = String.format("%d_%d.json", dividend, divisor);
         DivisionResult divisionResult = loadDivisionResultFromFile(resultFileName);
 
-        String expected = loadStringFromFile(formattedFileName);
+        String expected = loadFormattedResultFromFile(formattedFileName);
         String actual = underTest.format(divisionResult);
         assertEquals(expected, actual);
     }

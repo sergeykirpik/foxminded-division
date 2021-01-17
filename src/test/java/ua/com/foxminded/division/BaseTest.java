@@ -25,7 +25,7 @@ public class BaseTest {
     }
 
     protected DivisionResult loadDivisionResultFromFile(String fileName) {
-        Path filePath = TEST_RESOURCES_PATH.resolve(fileName);
+        Path filePath = TEST_RESOURCES_PATH.resolve("math").resolve(fileName);
         try (Reader reader = Files.newBufferedReader(filePath)) {
             return gson.fromJson(reader, DivisionResult.class);
 
@@ -34,8 +34,8 @@ public class BaseTest {
         }
     }
 
-    protected String loadStringFromFile(String fileName) {
-        Path filePath = TEST_RESOURCES_PATH.resolve(fileName);
+    protected String loadFormattedResultFromFile(String fileName) {
+        Path filePath = TEST_RESOURCES_PATH.resolve("classic").resolve(fileName);
         try {
             return Files.readString(filePath, Charsets.UTF_8);
 
