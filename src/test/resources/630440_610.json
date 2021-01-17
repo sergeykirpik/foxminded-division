@@ -1,0 +1,44 @@
+{
+  "dividend": 630440,
+  "divisor": 610,
+  "quotient": 1033,
+  "remainder": 310,
+  "steps": [
+    {
+      "dividend": 6,
+      "integralDividend": 0,
+      "quotient": 0,
+      "remainder": 6
+    },
+    {
+      "dividend": 63,
+      "integralDividend": 0,
+      "quotient": 0,
+      "remainder": 63
+    },
+    {
+      "dividend": 630,
+      "integralDividend": 610,
+      "quotient": 1,
+      "remainder": 20
+    },
+    {
+      "dividend": 204,
+      "integralDividend": 0,
+      "quotient": 0,
+      "remainder": 204
+    },
+    {
+      "dividend": 2044,
+      "integralDividend": 1830,
+      "quotient": 3,
+      "remainder": 214
+    },
+    {
+      "dividend": 2140,
+      "integralDividend": 1830,
+      "quotient": 3,
+      "remainder": 310
+    }
+  ]
+}
