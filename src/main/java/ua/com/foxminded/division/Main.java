@@ -1,5 +1,6 @@
 package ua.com.foxminded.division;
 
+import ua.com.foxminded.division.exception.BadArgsException;
 import ua.com.foxminded.division.ioc.Context;
 import ua.com.foxminded.division.math.Divider;
 import ua.com.foxminded.division.model.DivisionResult;
@@ -13,18 +14,28 @@ public class Main
 {
     public static void main( String[] args )
     {
-        int dividend = 78945;
-        int divisor = 4;
+        if (args.length != 2) {
+            System.out.println("\nUsage: division [dividend] [divisor]\n");
+            System.exit(1);
+        }
 
-        Context context = Context.newInstance(args);
+        Context ctx = null;
+        try {
+            ctx = Context.newInstance(args);
+        } catch (BadArgsException e) {
+            System.out.println(e.getMessage());
+            System.exit(1);
+        }
 
-        Divider divider = context.getDivider();
-        DivisionResult result = divider.divide(dividend, divisor);
+        Divider divider = ctx.getDivider();
+        DivisionResult result = divider.divide(ctx.getDividend(), ctx.getDivisor());
 
-        Formatter formatter = context.getFormatter();
+        Formatter formatter = ctx.getFormatter();
         String output = formatter.format(result);
 
+        System.out.println();
         System.out.println(output);
+        System.out.println();
     }
 
 }

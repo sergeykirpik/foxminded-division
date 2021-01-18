@@ -2,7 +2,7 @@ package ua.com.foxminded.division.generator;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import ua.com.foxminded.division.math.Divider;
+import ua.com.foxminded.division.math.IntegerDivider;
 import ua.com.foxminded.division.model.DivisionResult;
 
 import java.io.IOException;
@@ -14,7 +14,7 @@ public class TestCaseGenerator {
 
     private final static Path TEST_RESOURCES_PATH = Path.of("src/test/resources");
     private final static Gson gson = new GsonBuilder().setPrettyPrinting().create();
-    private final static Divider divider = new Divider();
+    private final static IntegerDivider divider = new IntegerDivider();
 
     private static void generateTestCase(int dividend, int divisor, String fileName) {
         DivisionResult result = divider.divide(dividend, divisor);

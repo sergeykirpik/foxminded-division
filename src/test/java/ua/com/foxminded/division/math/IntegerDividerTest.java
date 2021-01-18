@@ -8,13 +8,13 @@ import ua.com.foxminded.division.model.DivisionResult;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class DividerTest extends BaseTest {
+public class IntegerDividerTest extends BaseTest {
 
     private Divider underTest;
 
     @BeforeEach
     void setup() {
-        underTest = new Divider();
+        underTest = new IntegerDivider();
     }
 
     @ParameterizedTest
