@@ -23,7 +23,9 @@ public class Main
         try {
             ctx = Context.newInstance(args);
         } catch (BadArgsException e) {
+            System.out.println();
             System.out.println(e.getMessage());
+            System.out.println();
             System.exit(1);
         }
 

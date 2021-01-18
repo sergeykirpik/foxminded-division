@@ -66,13 +66,5 @@ public class Context {
             }
             return params;
         }
-
-        public int getDividend() {
-            return dividend;
-        }
-
-        public int getDivisor() {
-            return divisor;
-        }
     }
 }

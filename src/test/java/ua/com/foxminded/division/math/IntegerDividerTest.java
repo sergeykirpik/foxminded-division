@@ -1,6 +1,7 @@
 package ua.com.foxminded.division.math;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 import ua.com.foxminded.division.BaseTest;
@@ -15,6 +16,13 @@ public class IntegerDividerTest extends BaseTest {
     @BeforeEach
     void setup() {
         underTest = new IntegerDivider();
+    }
+
+    @Test
+    void divide_shouldReturnCorrectQuotientAndRemainder() {
+        DivisionResult result = underTest.divide(13, 4);
+        assertEquals(3, result.getQuotient());
+        assertEquals(1, result.getRemainder());
     }
 
     @ParameterizedTest
